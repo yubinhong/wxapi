@@ -47,7 +47,7 @@ def gettoken(agent_id, corp_name):
             r = requests.get(url=url, params=data, verify=False, timeout=5)
             print(r.content)
             token = r.json()['access_token']
-            redis_client.setex("token:%s:%s" % (corpid, agent_id), token, 5400)
+            redis_client.setex("token:%s:%s" % (corpid, agent_id), 5400, token)
         except Exception as e:
             print(e)
             token = ''
